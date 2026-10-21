@@ -38,7 +38,7 @@ RUN if [ "$TARGETARCH" = "amd64" ]; then arch=x86_64 sha="$KIRO_CLI_SHA256_AMD64
     && ln -sf /opt/kiro/bin/kiro-cli /usr/local/bin/kiro-cli \
     && kiro-cli --version | grep -F "${KIRO_CLI_VERSION}" \
     && rm -rf /root/.local /tmp/kiro-cli /tmp/kiro-cli.zip
-ARG CLAUDE_CODE_VERSION=2.1.296
+ARG CLAUDE_CODE_VERSION=2.1.306
 RUN npm install -g "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}" \
     && claude --version | grep -F "${CLAUDE_CODE_VERSION}" \
     && npm cache clean --force
