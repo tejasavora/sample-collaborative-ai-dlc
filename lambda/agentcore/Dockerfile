@@ -42,6 +42,13 @@ ARG CLAUDE_CODE_VERSION=2.1.306
 RUN npm install -g "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}" \
     && claude --version | grep -F "${CLAUDE_CODE_VERSION}" \
     && npm cache clean --force
+
+# Salesforce DX CLI + MCP, pre-installed so a custom MCP starts within the probe/API timeout (workshop test).
+ARG SF_CLI_VERSION=2.155.8
+ARG SF_MCP_VERSION=0.30.15
+RUN npm install -g "@salesforce/cli@${SF_CLI_VERSION}" "@salesforce/mcp@${SF_MCP_VERSION}" \
+    && sf --version && test -x /usr/local/bin/sf-mcp-server
+
 ARG OPENCODE_VERSION=1.19.0
 ARG OPENCODE_SHA256_ARM64=e9841d43d3e1a8f36ed2691592d3b8b4fb097e606c8b559a277a1b845840e26b
 ARG OPENCODE_SHA256_AMD64=7bb9e61ad6feacf2e89c10a6a2c1840e3de4220bb50ba1fc7110f31806076aec
